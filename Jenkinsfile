@@ -1,5 +1,4 @@
 pipeline{
-   agent any
    stages{
      stage('SCM Chekout'){
       git 'https://github.com/maritox09/SistemaDeVenta'
