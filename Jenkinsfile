@@ -1,4 +1,4 @@
-node{
+pipeline{
   stage('SCM Chekout'){
     git 'https://github.com/maritox09/SistemaDeVenta'
   }
