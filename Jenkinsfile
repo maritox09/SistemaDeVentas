@@ -1,10 +1,15 @@
 pipeline{
+   agent any
    stages{
      stage('SCM Chekout'){
-      git 'https://github.com/maritox09/SistemaDeVenta'
+        steps{
+         git 'https://github.com/maritox09/SistemaDeVenta'
+        }
      }
      stage('Compile-Package'){
-      sh 'mvn package'
+        steps{
+         sh 'mvn package'
+        }
      }
    }
 }
