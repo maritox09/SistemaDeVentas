@@ -3,7 +3,7 @@ pipeline{
    stages{
      stage('SCM Chekout'){
         steps{
-         git 'https://github.com/maritox09/SistemaDeVenta'
+         git 'https://github.com/maritox09/SistemaDeVentas'
         }
      }
      stage('Compile-Package'){
