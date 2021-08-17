@@ -9,5 +9,10 @@ pipeline{
          git 'https://github.com/maritox09/SistemaDeVentas'
         }
      }
+      stage('Compile-Package'){
+        steps{
+         sh 'mvn package'
+        }
+     }
    }
 }
