@@ -12,7 +12,10 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.projectKey>SistemaDeVentas</sonar.projectKey>
+        <sonar.scanner.force-deprecated-java-version>true</sonar.scanner.force-deprecated-java-version>
+        <sonar.host.url>https://localhost:9000</sonar.host.url>
+        <sonar.login>admin</sonar.login>
+        <sonar.password>chema10</sonar.password>
     </properties>
     
     <dependencies>
@@ -97,6 +100,7 @@
                 <version>2.6</version>
                 <executions>
                     <execution>
+                        <?m2e execute onConfiguration?>
                         <phase>validate</phase>
                         <goals>
                             <goal>copy</goal>
