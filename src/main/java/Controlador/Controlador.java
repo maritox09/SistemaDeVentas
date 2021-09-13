@@ -284,6 +284,7 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("datosP", p);
                     request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                     break;
+                // Comentario de gratis
                 case "Actualizar":
                     int id1 = Integer.parseInt(request.getParameter("id"));
                     String nombre1 = request.getParameter("nombre");
