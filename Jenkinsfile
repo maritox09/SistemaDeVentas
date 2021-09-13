@@ -4,20 +4,22 @@ pipeline{
       maven 'Maven'
    }
    stages{
-      stage('SCM Chekout'){
-         steps{
-            git 'https://github.com/maritox09/SistemaDeVentas'
+     stage('SCM Chekout'){
+        steps{
+         git 'https://github.com/maritox09/SistemaDeVentas'
         }
-      }
-      stage("SonarQube"){
-         withSonarQubeEnv('sonarqube') {
-            sh 'cd tests && mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10'
-         }
-      }
-      stage("Quality Gate") {
-         timeout(time: 1, unit: 'HOURS') {
-         waitForQualityGate abortPipeline: true
-         }
-      }
+     }
+      stage('Compile-Package'){
+        steps{
+         sh 'mvn package'
+        }
+     }
+     stage('SonarQube.Analysis'){
+        steps{
+           withSonarQubeEnv('sonarqube') {
+              sh "mvn sonar:sonar"
+            }
+        }
+     }
    }
 }
