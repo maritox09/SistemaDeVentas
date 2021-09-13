@@ -17,7 +17,7 @@ pipeline{
      stage('SonarQube.Analysis'){
         steps{
            withSonarQubeEnv('sonarqube') {
-              sh "${mvnHome}/bin/mvn -f /pom.xml verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10"
+              sh "mvn sonar:sonar"
             }
         }
      }
