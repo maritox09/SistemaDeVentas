@@ -16,6 +16,7 @@ pipeline{
      }
      stage('SonarQube.Analysis'){
         steps{
+           def mvnHome =  tool name: 'Maven', type: 'maven'
            withSonarQubeEnv('sonarqube') {
               sh "${mvnHome}/bin/mvn -f /pom.xml verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10"
             }
