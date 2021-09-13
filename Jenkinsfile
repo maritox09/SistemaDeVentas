@@ -8,9 +8,8 @@ pipeline{
          steps{
             git 'https://github.com/maritox09/SistemaDeVentas'
         }
-     }
+      }
       stage("SonarQube"){
-         checkout("tests")
          withSonarQubeEnv('SonarQube') {
             sh 'cd tests && mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10'
          }
