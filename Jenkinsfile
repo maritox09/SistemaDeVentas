@@ -10,7 +10,7 @@ pipeline{
         }
       }
       stage("SonarQube"){
-         withSonarQubeEnv('SonarQube') {
+         withSonarQubeEnv('sonarqube') {
             sh 'cd tests && mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10'
          }
       }
