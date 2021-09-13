@@ -14,15 +14,6 @@ pipeline{
          sh 'mvn package'
         }
      }
-     stage('Quality gate') {
-          //waitForQualityGate abortPipeline: true
-        def qg = waitForQualityGate()
-        if (qg.status != 'OK') {
-        error "Pipeline aborted due to quality gate failure: ${qg.status}"
-        }else {
-        echo 'Pipeline completed'
-        }
-    }
      stage('SonarQube.Analysis'){
         steps{
            withSonarQubeEnv('sonarqube') {
@@ -30,5 +21,13 @@ pipeline{
             }
         }
      }
+      stage('Quality gate') {
+         def qg = waitForQualityGate()
+         if (qg.status != 'OK') {
+         error "Pipeline aborted due to quality gate failure: ${qg.status}"
+         }else {
+         echo 'Pipeline completed'
+         }
+      }
    }
 }
