@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author josue
+ * @author mario
  */
 public class Validar extends HttpServlet {
 
@@ -24,22 +24,23 @@ public class Validar extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
-    EmpleadoDAO edao=new EmpleadoDAO();
-    Empleado em=new Empleado();
+    EmpleadoDAO edao = new EmpleadoDAO();
+    Empleado em = new Empleado();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Validar</title>");            
+            out.println("<title>Servlet Validar</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Validar at " + request.getContextPath() + "</h1>");
@@ -48,14 +49,15 @@ public class Validar extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,29 +68,29 @@ public class Validar extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String accion= request.getParameter("accion");
-        if(accion.equalsIgnoreCase("Ingresar")){
-            String user=request.getParameter("usuario");
-            String pass=request.getParameter("pass");
-            em=edao.validar(user, pass);
-            if(em.getNombre()!=null){
-                int x= em.getTipo();
-                Empleado em1=edao.listarId(em.getId());
+        String accion = request.getParameter("accion");
+        if (accion.equalsIgnoreCase("Ingresar")) {
+            String user = request.getParameter("usuario");
+            String pass = request.getParameter("pass");
+            em = edao.validar(user, pass);
+            if (em.getNombre() != null) {
+                int x = em.getTipo();
+                Empleado em1 = edao.listarId(em.getId());
                 request.setAttribute("tipo", x);
                 request.setAttribute("empleado", em1);
                 request.getRequestDispatcher("Controlador?menu=Principal").forward(request, response);
-            }else{
+            } else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-        }else{
+        } else {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
