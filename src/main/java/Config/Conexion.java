@@ -8,18 +8,17 @@ package Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-
 public class Conexion {
-   
-      Connection con; 
 
-    public Connection conexion(){
+    Connection con;
+
+    public Connection conexion() {
 
         try {
-              Class.forName("com.mysql.jdbc.Driver");
-              con=DriverManager.getConnection("jdbc:mysql://192.168.5.194:3306/Ventas","root","example");
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Ventas", "root", "example");
         } catch (Exception e) {
-            
+
         }
         return con;
     }
