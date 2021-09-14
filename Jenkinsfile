@@ -14,16 +14,16 @@ pipeline{
          sh 'mvn package'
         }
      }
-     stage('SonarQube.Analysis'){
-        steps{
-           withSonarQubeEnv('sonarqube') {
-              sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10"
-            }
-        }
-     }
+//     stage('SonarQube.Analysis'){
+//        steps{
+//           withSonarQubeEnv('sonarqube') {
+//              sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10"
+//            }
+//        }
+//    }
      stage('Deploy container'){
         steps{
-           sh 'cd tests && mvn package && cd target'
+           sh 'cd target'
            deploy adapters: [tomcat9(credentialsId: '004', path: '', url: 'http://localhost:7072/')], contextPath: 'rps', war: '*/.war'
         }
      }
