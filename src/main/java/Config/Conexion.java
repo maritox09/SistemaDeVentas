@@ -8,18 +8,17 @@ package Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-
 public class Conexion {
-   
-      Connection con; 
 
-    public Connection conexion(){
+    Connection con;
+
+    public Connection conexion() {
 
         try {
-              Class.forName("oracle.jdbc.driver.OracleDriver");
-              con=DriverManager.getConnection("jdbc:oracle:thin:@ventas.falcorp.net:51521:XE","system","oracle");
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection("jdbc:mysql://192.168.5.194:3306/Ventas", "root", "example");
         } catch (Exception e) {
-            
+
         }
         return con;
     }
