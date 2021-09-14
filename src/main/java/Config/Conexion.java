@@ -17,7 +17,7 @@ public class Conexion {
 
         try {
               Class.forName("oracle.jdbc.driver.OracleDriver");
-              con=DriverManager.getConnection("jdbc:oracle:thin:@ventas.falcorp.net:51521:XE","system","oracle");
+              con=DriverManager.getConnection("jdbc:mysql://192.168.5.194:3306/Ventas?","root","example");
         } catch (Exception e) {
             
         }
