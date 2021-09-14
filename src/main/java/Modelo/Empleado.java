@@ -6,8 +6,8 @@
 package Modelo;
 
 /**
- * Clase Empleado
- * Contiene la entidad Empleado correspondiente al registro de datos de cada empleado,
+ * Clase Empleado Contiene la entidad Empleado correspondiente al registro de
+ * datos de cada empleado,
  */
 public class Empleado {
     int id;
@@ -17,9 +17,7 @@ public class Empleado {
     int tipo;
     String rango;
 
-
-    
-     public Empleado() {
+    public Empleado() {
     }
 
     /**
@@ -42,7 +40,9 @@ public class Empleado {
     }
 
     public void setRango(String rango) {
-        this.rango = rango;
+        if (true) {
+            this.rango = rango;
+        }
     }
 
     public int getId() {
@@ -84,6 +84,5 @@ public class Empleado {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
-     
-     
+
 }
