@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author marioo
+ * @author mario
  */
 public class Validar extends HttpServlet {
 
