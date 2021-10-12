@@ -1,6 +1,22 @@
 kind: pipeline
 steps:
-- name: Send_Email
+- name: Package
+  image: maven:3-jdk-11
+  commands:
+  - mvn package
+- name: Unit Testing
+  image: maven:3-jdk-11
+  commands:
+  - mvn test
+- name: SonarQube
+  image: maven:3-jdk-11
+  commands: 
+  - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=http://0295-181-174-107-140.ngrok.io/
+- name: QualityGate
+  image: maven:3-jdk-11
+  commands:
+  - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=http://0295-181-174-107-140.ngrok.io/
+- name: Email Notification
   image: drillster/drone-email
   settings:
     from: jmyc9999@gmail.com
@@ -13,17 +29,7 @@ steps:
     subject: Pipeline 
     recipients:
         - jmyc9999@gmail.com
-
   when:
     status:
     - success
     - failure
-
-- name: Package
-  image: maven:3-jdk-11
-  commands:
-  - mvn package
-- name: Unit Testing
-  image: maven:3-jdk-11
-  commands:
-  - mvn test
