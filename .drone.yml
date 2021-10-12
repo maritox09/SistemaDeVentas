@@ -11,11 +11,15 @@ steps:
 - name: SonarQube
   image: maven:3-jdk-11
   commands: 
-  - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=http://0295-181-174-107-140.ngrok.io/
+  - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=https://cold-emu-60.loca.lt
 - name: QualityGate
   image: maven:3-jdk-11
   commands:
-  - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=http://0295-181-174-107-140.ngrok.io/
+  - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=https://cold-emu-60.loca.lt
+- name: Production
+    image: maven:3-jdk-11
+    commands:
+      - mvn tomcat7:redeploy
 - name: Email Notification
   image: drillster/drone-email
   settings:
